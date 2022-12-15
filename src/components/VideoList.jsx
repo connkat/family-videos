@@ -119,6 +119,7 @@ function EnhancedTableToolbar(props) {
 export default function EnhancedTable() {
   const [order, setOrder] = useState("asc");
   const [orderBy, setOrderBy] = useState("year");
+    // eslint-disable-next-line no-unused-vars
   const [selected, setSelected] = useState([]);
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(5);
