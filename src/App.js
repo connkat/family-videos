@@ -1,7 +1,5 @@
-import { Fragment } from "react";
-
 import ListVideos from "./components/ListVideos";
-import FilterBar from "./components/FilterBar/FilterBar";
+// import FilterBar from "./components/FilterBar/FilterBar";
 import VideoCard from "./components/VideoCard";
 import Header from "./components/Header";
 
@@ -11,7 +9,7 @@ function App() {
   return (
       <div>
         <Header />
-        <FilterBar />
+        {/* <FilterBar /> */}
         <VideoCard />
         <ListVideos />
       </div>

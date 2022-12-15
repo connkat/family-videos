@@ -1,22 +1,22 @@
-import { useState } from "react";
+// import { useState } from "react";
 import TextField from "./TextField";
 import Dropdown from "./Dropdown";
 
 import "./filterbar.css";
 
 function FilterBar() {
-  const [searchField, setSearchField] = useState("search");
+  // const [searchField, setSearchField] = useState("search");
   const onSubmitForm = async (e) => {
     e.preventDefault();
     try {
-      const body = { searchField };
-      const res = await fetch("http://localhost:4000/videos", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(body),
-      });
+      // const body = { searchField };
+      // const res = await fetch("http://localhost:4000/videos", {
+      //   method: "POST",
+      //   headers: { "Content-Type": "application/json" },
+      //   body: JSON.stringify(body),
+      // });
 
-      setSearchField("");
+      // setSearchField("");
     } catch (err) {
       console.error(err.message);
     }
