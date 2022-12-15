@@ -15,23 +15,7 @@ import Paper from "@mui/material/Paper";
 import { visuallyHidden } from "@mui/utils";
 
 import Modal from "./Modal";
-
-function createData(date, year, event, mainPerson, embedId) {
-  return {
-    date,
-    year,
-    event,
-    mainPerson,
-    embedId,
-  };
-}
-
-const rows = [
-  createData("March 12, 1997", "1997", null, null, "hzSSQ7_9enI"),
-  createData("April 30, 1994", "1994", null, null, "MdkGe8wyd5c"),
-  createData("August 12, 1993", "1993", "Birthday", "Shelagh", "XONd8rYCDRk"),
-  createData("January 8, 1994", "1994", "Birthday", "Nancy", "1WiaDMfRZME"),
-];
+import {rows} from "../data";
 
 function descendingComparator(a, b, orderBy) {
   if (b[orderBy] < a[orderBy]) {
@@ -85,9 +69,7 @@ function EnhancedTableHead(props) {
   return (
     <TableHead>
       <TableRow>
-        <TableCell padding="checkbox">
-          
-        </TableCell>
+        <TableCell padding="checkbox"></TableCell>
         {headCells.map((headCell) => (
           <TableCell
             key={headCell.id}
@@ -130,8 +112,7 @@ function EnhancedTableToolbar(props) {
             ),
         }),
       }}
-    >
-    </Toolbar>
+    ></Toolbar>
   );
 }
 
@@ -155,9 +136,9 @@ export default function EnhancedTable() {
   const handleClose = () => setOpen(false);
 
   const handleClick = (event, date, embedId) => {
-    handleOpen()
+    handleOpen();
     setEmbedId(embedId);
-    setDate(date)
+    setDate(date);
     console.log(embedId);
   };
 
@@ -178,7 +159,12 @@ export default function EnhancedTable() {
 
   return (
     <Box sx={{ width: "100%" }}>
-      <Modal open={open} handleClose={handleClose} date={date} embedId={embedId} />
+      <Modal
+        open={open}
+        handleClose={handleClose}
+        date={date}
+        embedId={embedId}
+      />
       <Paper sx={{ width: "100%", mb: 2 }}>
         <EnhancedTableToolbar numSelected={selected.length} />
         <TableContainer>
@@ -215,8 +201,7 @@ export default function EnhancedTable() {
                       key={row.date}
                       selected={isItemSelected}
                     >
-                      <TableCell padding="checkbox">
-                      </TableCell>
+                      <TableCell padding="checkbox"></TableCell>
                       <TableCell
                         component="th"
                         id={labelId}
