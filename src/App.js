@@ -1,6 +1,4 @@
-import ListVideos from "./components/ListVideos";
-// import FilterBar from "./components/FilterBar/FilterBar";
-import VideoCard from "./components/VideoCard";
+import VideoList from "./components/VideoList";
 import Header from "./components/Header";
 
 import "./App.css";
@@ -9,9 +7,7 @@ function App() {
   return (
       <div>
         <Header />
-        {/* <FilterBar /> */}
-        <VideoCard />
-        <ListVideos />
+        <VideoList />
       </div>
   );
 }
