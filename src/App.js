@@ -5,10 +5,10 @@ import "./App.css";
 
 function App() {
   return (
-      <div>
-        <Header />
-        <VideoList />
-      </div>
+    <div>
+      <Header />
+      <VideoList />
+    </div>
   );
 }
 
