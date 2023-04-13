@@ -116,7 +116,7 @@ function EnhancedTableToolbar(props) {
   );
 }
 
-export default function EnhancedTable() {
+function VideoList() {
   const [order, setOrder] = useState("asc");
   const [orderBy, setOrderBy] = useState("year");
     // eslint-disable-next-line no-unused-vars
@@ -242,3 +242,5 @@ export default function EnhancedTable() {
     </Box>
   );
 }
+
+export default VideoList;
