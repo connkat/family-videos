@@ -90,7 +90,7 @@ export const rows = [
   createData(31,"June 15, 1993", "1993", "Birthday", "Kate", "B-OgX67fMYI"),
   createData(32,"June 14, 1992", "1992", "Birthday", "Kate", "HNJbrR_9SLw"),
   createData(33,"Dec 26, 1991", "1991", "First Steps", "Kate", "oednobezVFo"),
-  createData(34,"Dec 1, 1990", "1990", "MSM", null, null, "noGg-JTWfZE/edit"),
-  createData(35,"Aug 1,1991", "1991", "Stoney Lake", null, "aRjkvvUTDbM"),
+  createData(34,"Dec 1, 1990", "1990", "MSM", null, null, "noGg-JTWfZE"),
+  createData(35,"Aug 1,1991", "1991", "Cameron Lake", null, "aRjkvvUTDbM"),
   createData(36,"Nov 30, 1990", "1991", "MSM", "Kate", "s-1AbqM0Yp0"),
 ];
