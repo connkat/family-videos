@@ -1,15 +1,17 @@
 import Header from "./components/Header";
-import SearchBar from "./components/SearchBar";
+import VideoTable from "./components/VideoTable";
+// import FilterBar from "./components/FilterBar";
 
 import "./App.css";
 
 function App() {
-  return (
-    <div>
-      <Header />
-      <SearchBar />
-    </div>
-  );
+	return (
+		<div>
+			<Header />
+			{/* <FilterBar /> */}
+			<VideoTable />
+		</div>
+	);
 }
 
 export default App;

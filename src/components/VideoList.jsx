@@ -125,13 +125,13 @@ function VideoList() {
   const [rowsPerPage, setRowsPerPage] = useState(5);
   const [embedId, setEmbedId] = useState("");
   const [date, setDate] = useState("");
+  const [open, setOpen] = useState(false);
 
   const handleRequestSort = (event, property) => {
     const isAsc = orderBy === property && order === "asc";
     setOrder(isAsc ? "desc" : "asc");
     setOrderBy(property);
   };
-  const [open, setOpen] = useState(false);
 
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
