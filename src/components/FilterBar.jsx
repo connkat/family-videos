@@ -15,8 +15,10 @@ export default function FilterBar() {
 	}
 
 	function handleSubmit() {
-		console.log("this");
+		console.log("submit");
 	}
+
+
 
 	return (
 		<form>
