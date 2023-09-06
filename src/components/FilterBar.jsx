@@ -18,8 +18,6 @@ export default function FilterBar() {
 		console.log("submit");
 	}
 
-
-
 	return (
 		<form>
 			<input
@@ -30,14 +28,31 @@ export default function FilterBar() {
 					handleChange("code", value);
 				}}
 			/>
-			<input
-				type="text"
+
+			<select
+				name="event"
+				id="event"
 				placeholder="Event"
-				value={filterValues.event}
 				onChange={(value) => {
 					handleChange("code", value);
 				}}
-			/>
+				value={filterValues.event}
+				defaultValue={null}
+			>
+				<option value={null}>Event</option>
+				<option value="birthday">Birthday</option>
+				<option value="christmas">Christmas</option>
+				<option value="march_break">March Break</option>
+				<option value="crawling">Crawling</option>
+				<option value="halloween">Halloween</option>
+				<option value="baseball">Baseball</option>
+				<option value="kindergarten">Kindergarten Grad</option>
+				<option value="news">News</option>
+				<option value="steps">First Steps</option>
+				<option value="msm">MSM</option>
+				<option value="cameron">Cameron Lake</option>
+			</select>
+
 			<input
 				type="text"
 				placeholder="Main Person"
