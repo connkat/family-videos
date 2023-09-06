@@ -13,6 +13,7 @@ import TableSortLabel from "@mui/material/TableSortLabel";
 import { visuallyHidden } from "@mui/utils";
 
 import Modal from "./Modal";
+import data from "../data.json";
 
 const headCells = [
 	{
@@ -29,25 +30,6 @@ const headCells = [
 		id: "mainPerson",
 		numeric: true,
 		label: "Main Person",
-	},
-];
-
-const data = [
-	{
-		id: 1,
-		date: "March 12, 1997",
-		year: "1997",
-		event: null,
-		main_person: null,
-		embedId: "hzSSQ7_9enI",
-	},
-	{
-		id: 2,
-		date: "April 30, 1994",
-		year: "1994",
-		event: null,
-		main_person: null,
-		embedId: "MdkGe8wyd5c",
 	},
 ];
 
@@ -103,10 +85,6 @@ function EnhancedTableHead(props) {
 }
 
 export default function VideoBar(rows) {
-	data.map((row) => {
-		console.log("ROW!!!", row.id);
-	});
-
 	const [order, setOrder] = useState("asc");
 	const [orderBy, setOrderBy] = useState("year");
 	const [page, setPage] = useState(0);
