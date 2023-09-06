@@ -8,7 +8,6 @@ import TableHead from "@mui/material/TableHead";
 import TableContainer from "@mui/material/TableContainer";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
-import TablePagination from "@mui/material/TablePagination";
 import TableSortLabel from "@mui/material/TableSortLabel";
 import { visuallyHidden } from "@mui/utils";
 
@@ -87,8 +86,6 @@ function EnhancedTableHead(props) {
 export default function VideoBar(rows) {
 	const [order, setOrder] = useState("asc");
 	const [orderBy, setOrderBy] = useState("year");
-	const [page, setPage] = useState(0);
-	const [rowsPerPage, setRowsPerPage] = useState(10);
 	const [embedId, setEmbedId] = useState("");
 	const [date, setDate] = useState("");
 	const [open, setOpen] = useState(false);
@@ -107,15 +104,6 @@ export default function VideoBar(rows) {
 		handleOpen();
 		setEmbedId(embedId);
 		setDate(date);
-	};
-
-	const handleChangePage = (event, newPage) => {
-		setPage(newPage);
-	};
-
-	const handleChangeRowsPerPage = (event) => {
-		setRowsPerPage(parseInt(event.target.value, 10));
-		setPage(0);
 	};
 
 	return (
@@ -142,8 +130,7 @@ export default function VideoBar(rows) {
 						<TableBody>
 							{data
 								.sort(getComparator(order, orderBy))
-								.slice()
-								.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+
 								.map((video) => {
 									return (
 										<TableRow
@@ -162,15 +149,6 @@ export default function VideoBar(rows) {
 						</TableBody>
 					</Table>
 				</TableContainer>
-				<TablePagination
-					rowsPerPageOptions={[5, 10, 25]}
-					component="div"
-					count={rows.length ?? 0}
-					rowsPerPage={rowsPerPage}
-					page={page}
-					onPageChange={handleChangePage}
-					onRowsPerPageChange={handleChangeRowsPerPage}
-				/>
 			</Paper>
 		</Box>
 	);
