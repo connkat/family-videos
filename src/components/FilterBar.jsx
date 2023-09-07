@@ -1,12 +1,4 @@
-import React, { useState } from "react";
-
-export default function FilterBar() {
-	const [filterValues, setFilterValues] = useState({
-		year: undefined,
-		event: undefined,
-		mainPerson: undefined,
-	});
-
+export default function FilterBar({ filterValues, setFilterValues }) {
 	function handleChange(fieldName, value) {
 		setFilterValues({
 			...filterValues,
@@ -14,23 +6,25 @@ export default function FilterBar() {
 		});
 	}
 
-	function handleSubmit() {
-		console.log("submit");
+	function handleSubmit(event) {
+		event.preventDefault();
+
+		return filterValues;
 	}
+
+	console.log("HI", filterValues);
 
 	return (
 		<form>
 			<select
 				name="year"
 				id="year"
-				placeholder="Year"
-				onChange={(value) => {
-					handleChange("year", value);
+				defaultValue={filterValues.year ?? "Year"}
+				onChange={(event) => {
+					handleChange("year", event.target.value);
 				}}
-				value={filterValues.year}
-				defaultValue={null}
 			>
-				<option value={null} disabled defaultValue hidden>
+				<option value={null} disabled hidden>
 					Year
 				</option>
 				<option value="1983">1983</option>
@@ -41,7 +35,7 @@ export default function FilterBar() {
 				<option value="1988">1988</option>
 				<option value="1989">1989</option>
 				<option value="1990">1990</option>
-				<option value="1911">1911</option>
+				<option value="1991">1911</option>
 				<option value="1992">1992</option>
 				<option value="1993">1993</option>
 				<option value={null}>None</option>
@@ -50,14 +44,12 @@ export default function FilterBar() {
 			<select
 				name="event"
 				id="event"
-				placeholder="Event"
-				onChange={(value) => {
-					handleChange("event", value);
+				defaultValue={filterValues.event ?? "Event"}
+				onChange={(event) => {
+					handleChange("event", event.target.value);
 				}}
-				value={filterValues.event}
-				defaultValue={null}
 			>
-				<option value={null} disabled defaultValue hidden>
+				<option value={null} disabled hidden>
 					Event
 				</option>
 				<option value="birthday">Birthday</option>
@@ -77,14 +69,12 @@ export default function FilterBar() {
 			<select
 				name="mainPerson"
 				id="mainPerson"
-				placeholder="Main Person"
-				onChange={(value) => {
-					handleChange("mainPerson", value);
+				defaultValue={filterValues.mainPerson ?? "Main Person"}
+				onChange={(event) => {
+					handleChange("mainPerson", event.target.value);
 				}}
-				value={filterValues.event}
-				defaultValue={null}
 			>
-				<option disabled defaultValue hidden value={null}>
+				<option disabled hidden value={null}>
 					Main Person
 				</option>
 				<option value="meaghan">Meaghan</option>
