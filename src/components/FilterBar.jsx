@@ -30,7 +30,7 @@ export default function FilterBar() {
 				value={filterValues.year}
 				defaultValue={null}
 			>
-				<option value={null} disabled selected hidden>
+				<option value={null} disabled defaultValue hidden>
 					Year
 				</option>
 				<option value="1983">1983</option>
@@ -57,7 +57,7 @@ export default function FilterBar() {
 				value={filterValues.event}
 				defaultValue={null}
 			>
-				<option value={null} disabled selected hidden>
+				<option value={null} disabled defaultValue hidden>
 					Event
 				</option>
 				<option value="birthday">Birthday</option>
@@ -84,7 +84,7 @@ export default function FilterBar() {
 				value={filterValues.event}
 				defaultValue={null}
 			>
-				<option disabled selected hidden value={null}>
+				<option disabled defaultValue hidden value={null}>
 					Main Person
 				</option>
 				<option value="meaghan">Meaghan</option>
