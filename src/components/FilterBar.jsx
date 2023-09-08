@@ -46,7 +46,7 @@ export default function FilterBar({ filterValues, setFilterValues }) {
 				<option value="1991">1991</option>
 				<option value="1992">1992</option>
 				<option value="1993">1993</option>
-				<option value={null}>None</option>
+				<option value={""}>None</option>
 			</select>
 
 			<select
@@ -58,18 +58,18 @@ export default function FilterBar({ filterValues, setFilterValues }) {
 				<option value="" defaultValue disabled hidden>
 					Occasion
 				</option>
-				<option value="birthday">Birthday</option>
-				<option value="christmas">Christmas</option>
-				<option value="marchBreak">March Break</option>
-				<option value="crawling">Crawling</option>
-				<option value="halloween">Halloween</option>
+				<option value="Birthday">Birthday</option>
+				<option value="Christmas">Christmas</option>
+				<option value="March Break">March Break</option>
+				<option value="First">Crawling</option>
+				<option value="Halloween">Halloween</option>
 				<option value="baseball">Baseball</option>
-				<option value="kindergartenGrad">Kindergarten Grad</option>
-				<option value="news">News</option>
-				<option value="firstSteps">First Steps</option>
-				<option value="msm">MSM</option>
-				<option value="cameronLake">Cameron Lake</option>
-				<option value={null}>None</option>
+				<option value="Kindergarten Grad">Kindergarten Grad</option>
+				<option value="News">News</option>
+				<option value="First">First Steps</option>
+				<option value="MSM">MSM</option>
+				<option value="Cameron Lake">Cameron Lake</option>
+				<option value={""}>None</option>
 			</select>
 
 			<select
@@ -81,12 +81,12 @@ export default function FilterBar({ filterValues, setFilterValues }) {
 				<option value="" defaultValue disabled hidden>
 					Main Person
 				</option>
-				<option value="meaghan">Meaghan</option>
-				<option value="shealgh">Shealgh</option>
-				<option value="john">John</option>
-				<option value="kate">Kate</option>
-				<option value="nancy">Nancy</option>
-				<option value={null}>None</option>
+				<option value="Meaghan">Meaghan</option>
+				<option value="Shelagh">Shealgh</option>
+				<option value="John">John</option>
+				<option value="Kate">Kate</option>
+				<option value="Nancy">Nancy</option>
+				<option value={""}>None</option>
 			</select>
 			<button onClick={onSubmit}>Search</button>
 		</form>

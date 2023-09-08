@@ -3,160 +3,160 @@
 		"id": 1,
 		"date": "March 12, 1997",
 		"year": "1997",
-		"occasion": null,
-		"mainPerson": null,
+		"occasion": "",
+		"mainPerson": "",
 		"embedId": "hzSSQ7_9enI"
 	},
 	{
 		"id": 2,
 		"date": "April 30, 1994",
 		"year": "1994",
-		"occasion": null,
-		"mainPerson": null,
+		"occasion": "",
+		"mainPerson": "",
 		"embedId": "MdkGe8wyd5c"
 	},
 	{
 		"id": 3,
 		"date": "August 12, 1993",
 		"year": "1993",
-		"occasion": "birthday",
-		"mainPerson": "shelagh",
+		"occasion": "Birthday",
+		"mainPerson": "Shelagh",
 		"embedId": "XONd8rYCDRk"
 	},
 	{
 		"id": 4,
 		"date": "January 8, 1994",
 		"year": "1994",
-		"occasion": "birthday",
-		"mainPerson": "nancy",
+		"occasion": "Birthday",
+		"mainPerson": "Nancy",
 		"embedId": "1WiaDMfRZME"
 	},
 	{
 		"id": 5,
 		"date": "March 10, 1997",
 		"year": "1997",
-		"occasion": "marchBreak",
-		"mainPerson": null,
+		"occasion": "March Break",
+		"mainPerson": "",
 		"embedId": "Hf2CzVDALno"
 	},
 	{
 		"id": 6,
 		"date": "April 29, 1984",
 		"year": "1984",
-		"occasion": null,
-		"mainPerson": null,
+		"occasion": "",
+		"mainPerson": "",
 		"embedId": "p-HsR-Oa6uQ"
 	},
 	{
 		"id": 7,
 		"date": "October 5, 1991",
 		"year": "1991",
-		"occasion": "birthday",
-		"mainPerson": "shelagh",
+		"occasion": "Birthday",
+		"mainPerson": "Shelagh",
 		"embedId": "PLorTjJPabM"
 	},
 	{
 		"id": 8,
 		"date": "May 18, 1987",
 		"year": "1987",
-		"occasion": "crawling",
-		"mainPerson": "shelagh",
+		"occasion": "First",
+		"mainPerson": "Shelagh",
 		"embedId": "mcNc9cg7ntE"
 	},
 	{
 		"id": 9,
 		"date": "December 25, 1990",
 		"year": "1990",
-		"occasion": "christmas",
-		"mainPerson": null,
+		"occasion": "Christmas",
+		"mainPerson": "",
 		"embedId": "IQwc6B6wOAE"
 	},
 	{
 		"id": 10,
 		"date": "December 6, 1990",
 		"year": "1990",
-		"occasion": "birthday",
-		"mainPerson": "meaghan",
+		"occasion": "Birthday",
+		"mainPerson": "Meaghan",
 		"embedId": "rbZTo3JYWOk"
 	},
 	{
 		"id": 11,
 		"date": "December 3, 1990",
 		"year": "1990",
-		"occasion": null,
-		"mainPerson": null,
+		"occasion": "",
+		"mainPerson": "",
 		"embedId": "EbFQW6y9oxY"
 	},
 	{
 		"id": 12,
 		"date": "October 31, 1985",
 		"year": "1985",
-		"occasion": "halloween",
-		"mainPerson": "meaghan",
+		"occasion": "Halloween",
+		"mainPerson": "Meaghan",
 		"embedId": "au7q8gfaG8A"
 	},
 	{
 		"id": 13,
 		"date": "December 6, 1988",
 		"year": "1988",
-		"occasion": "birthday",
-		"mainPerson": "meaghan",
+		"occasion": "Birthday",
+		"mainPerson": "Meaghan",
 		"embedId": "HKF1_FGp4Fs"
 	},
 	{
 		"id": 14,
 		"date": "December 6, 1987",
 		"year": "1987",
-		"occasion": "birthday",
-		"mainPerson": "meaghan",
+		"occasion": "Birthday",
+		"mainPerson": "Meaghan",
 		"embedId": "a0VYVDK2t9U"
 	},
 	{
 		"id": 15,
 		"date": "December 6, 1985",
 		"year": "1985",
-		"occasion": "birthday",
-		"mainPerson": "meaghan",
+		"occasion": "Birthday",
+		"mainPerson": "Meaghan",
 		"embedId": "WdkUk8I1Hz8"
 	},
 	{
 		"id": 16,
 		"date": "December 6, 1984",
 		"year": "1984",
-		"occasion": "birthday",
-		"mainPerson": "meaghan",
+		"occasion": "Birthday",
+		"mainPerson": "Meaghan",
 		"embedId": "OtIWqB37-ZM"
 	},
 	{
 		"id": 17,
 		"date": "December 6, 1985",
 		"year": "1985",
-		"occasion": "birthday",
-		"mainPerson": "meaghan",
+		"occasion": "Birthday",
+		"mainPerson": "Meaghan",
 		"embedId": "Aqnc6hGe8Jk"
 	},
 	{
 		"id": 18,
 		"date": "October 17, 1993",
 		"year": "1993",
-		"occasion": "birthday",
-		"mainPerson": "john",
+		"occasion": "Birthday",
+		"mainPerson": "John",
 		"embedId": "rtxLum8YAU4"
 	},
 	{
 		"id": 19,
 		"date": "October 16, 1991",
 		"year": "1991",
-		"occasion": "birthday",
-		"mainPerson": "john",
+		"occasion": "Birthday",
+		"mainPerson": "John",
 		"embedId": "sp3Y7uQL-9Y"
 	},
 	{
 		"id": 20,
 		"date": "October 15, 1989",
 		"year": "1989",
-		"occasion": "birthday",
-		"mainPerson": "john",
+		"occasion": "Birthday",
+		"mainPerson": "John",
 		"embedId": "k6u3l7ePftY"
 	},
 	{
@@ -164,127 +164,127 @@
 		"date": "June 27, 1996",
 		"year": "1996",
 		"occasion": "baseball",
-		"mainPerson": "john",
+		"mainPerson": "John",
 		"embedId": "uRUa48JMRUs"
 	},
 	{
 		"id": 22,
 		"date": "June 25, 1996",
 		"year": "1996",
-		"occasion": "kindergartenGrad",
-		"mainPerson": "kate",
+		"occasion": "Kindergarten Grad",
+		"mainPerson": "Kate",
 		"embedId": "uRUa48JMRUs"
 	},
 	{
 		"id": 23,
 		"date": "June 24, 1994",
 		"year": "1994",
-		"occasion": "kindergartenGrad",
-		"mainPerson": "john",
+		"occasion": "Kindergarten Grad",
+		"mainPerson": "John",
 		"embedId": "TJQ8JcyUSWM"
 	},
 	{
 		"id": 24,
 		"date": "December 6, 1983",
 		"year": "1983",
-		"occasion": "news",
-		"mainPerson": null,
+		"occasion": "News",
+		"mainPerson": "",
 		"embedId": "m5jtiBtfNyY"
 	},
 	{
 		"id": 25,
 		"date": "April 1, 1990",
 		"year": "1990",
-		"occasion": "firstSteps",
-		"mainPerson": "john",
+		"occasion": "First",
+		"mainPerson": "John",
 		"embedId": "9CiuAwSzGQ8"
 	},
 	{
 		"id": 26,
 		"date": "January 17, 1984",
 		"year": "1984",
-		"occasion": null,
-		"mainPerson": "meaghan",
+		"occasion": "",
+		"mainPerson": "Meaghan",
 		"embedId": "kvYJ57fcvi0"
 	},
 	{
 		"id": 27,
 		"date": "October 25, 1988",
 		"year": "1988",
-		"occasion": null,
-		"mainPerson": "john",
+		"occasion": "",
+		"mainPerson": "John",
 		"embedId": "sI9W8Lb7NsU"
 	},
 	{
 		"id": 28,
 		"date": "June 15, 1994",
 		"year": "1994",
-		"occasion": "birthday",
-		"mainPerson": "kate",
+		"occasion": "Birthday",
+		"mainPerson": "Kate",
 		"embedId": "3OfUkJ5kY9U"
 	},
 	{
 		"id": 29,
 		"date": "March 17, 1994",
 		"year": "1994",
-		"occasion": "marchBreak",
-		"mainPerson": null,
+		"occasion": "March Break",
+		"mainPerson": "",
 		"embedId": "F_BuZoN55lM"
 	},
 	{
 		"id": 30,
 		"date": "June 16, 1991",
 		"year": "1991",
-		"occasion": "birthday",
-		"mainPerson": "kate",
+		"occasion": "Birthday",
+		"mainPerson": "Kate",
 		"embedId": "vRV-Ckpem2E"
 	},
 	{
 		"id": 31,
 		"date": "June 15, 1993",
 		"year": "1993",
-		"occasion": "birthday",
-		"mainPerson": "kate",
+		"occasion": "Birthday",
+		"mainPerson": "Kate",
 		"embedId": "B-OgX67fMYI"
 	},
 	{
 		"id": 32,
 		"date": "June 14, 1992",
 		"year": "1992",
-		"occasion": "birthday",
-		"mainPerson": "kate",
+		"occasion": "Birthday",
+		"mainPerson": "Kate",
 		"embedId": "HNJbrR_9SLw"
 	},
 	{
 		"id": 33,
 		"date": "December 26, 1991",
 		"year": "1991",
-		"occasion": "firstSteps",
-		"mainPerson": "kate",
+		"occasion": "First",
+		"mainPerson": "Kate",
 		"embedId": "oednobezVFo"
 	},
 	{
 		"id": 34,
 		"date": "December 1, 1990",
 		"year": "1990",
-		"occasion": "msm",
-		"mainPerson": null,
+		"occasion": "MSM",
+		"mainPerson": "",
 		"embedId": "noGg-JTWfZE"
 	},
 	{
 		"id": 35,
 		"date": "August 1,1991",
 		"year": "1991",
-		"occasion": "cameronLake",
-		"mainPerson": null,
+		"occasion": "Cameron Lake",
+		"mainPerson": "",
 		"embedId": "aRjkvvUTDbM"
 	},
 	{
 		"id": 36,
 		"date": "Nov 30, 1990",
 		"year": "1991",
-		"occasion": "msm",
-		"mainPerson": "kate",
+		"occasion": "MSM",
+		"mainPerson": "Kate",
 		"embedId": "s-1AbqM0Yp0"
 	}
 ]
