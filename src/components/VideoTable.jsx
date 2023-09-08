@@ -43,12 +43,12 @@ export default function VideoTable({ data }) {
 						aria-labelledby="tableTitle"
 						size={"medium"}
 					>
-						<TableHead>
+						{/* <TableHead>
 							<TableCell>Date</TableCell>
 							<TableCell>Year</TableCell>
 							<TableCell>Event</TableCell>
 							<TableCell>Main Person</TableCell>
-						</TableHead>
+						</TableHead> */}
 
 						<TableBody>
 							{data.map((video) => {

@@ -1,32 +1,41 @@
 export default function FilterBar({ filterValues, setFilterValues }) {
-	function handleChange(fieldName, value) {
-		setFilterValues({
-			...filterValues,
-			[fieldName]: value,
-		});
+	function handleChange(event) {
+		let { name, value } = event.target;
+		if (name === "year") {
+			setFilterValues({ ...filterValues, year: value });
+		}
+		if (name === "mainPerson") {
+			setFilterValues({ ...filterValues, mainPerson: value });
+		}
+		if (name === "occasion") {
+			setFilterValues({ ...filterValues, occasion: value });
+		}
 	}
 
-	function handleSubmit(event) {
+	function onSubmit(event) {
 		event.preventDefault();
-
+		setFilterValues({
+			year: filterValues.year,
+			occasion: filterValues.occasion,
+			mainPerson: filterValues.mainPerson,
+		});
+		console.log("now:", filterValues);
 		return filterValues;
 	}
 
-	console.log("HI", filterValues);
-
+	console.log("RErender??", filterValues);
 	return (
 		<form>
 			<select
 				name="year"
 				id="year"
-				defaultValue={filterValues.year ?? "Year"}
-				onChange={(event) => {
-					handleChange("year", event.target.value);
-				}}
+				value={filterValues.year}
+				onChange={handleChange}
 			>
-				<option value={null} disabled hidden>
+				<option value="" selected disabled hidden>
 					Year
 				</option>
+				<option value={null}>None</option>
 				<option value="1983">1983</option>
 				<option value="1984">1984</option>
 				<option value="1985">1985</option>
@@ -35,22 +44,19 @@ export default function FilterBar({ filterValues, setFilterValues }) {
 				<option value="1988">1988</option>
 				<option value="1989">1989</option>
 				<option value="1990">1990</option>
-				<option value="1991">1911</option>
+				<option value="1991">1991</option>
 				<option value="1992">1992</option>
 				<option value="1993">1993</option>
-				<option value={null}>None</option>
 			</select>
 
 			<select
-				name="event"
-				id="event"
-				defaultValue={filterValues.event ?? "Event"}
-				onChange={(event) => {
-					handleChange("event", event.target.value);
-				}}
+				name="occasion"
+				id="occasion"
+				value={filterValues.occasion}
+				onChange={handleChange}
 			>
-				<option value={null} disabled hidden>
-					Event
+				<option value="" selected disabled hidden>
+					Occasion
 				</option>
 				<option value="birthday">Birthday</option>
 				<option value="christmas">Christmas</option>
@@ -69,12 +75,10 @@ export default function FilterBar({ filterValues, setFilterValues }) {
 			<select
 				name="mainPerson"
 				id="mainPerson"
-				defaultValue={filterValues.mainPerson ?? "Main Person"}
-				onChange={(event) => {
-					handleChange("mainPerson", event.target.value);
-				}}
+				value={filterValues.mainPerson}
+				onChange={handleChange}
 			>
-				<option disabled hidden value={null}>
+				<option value="" selected disabled hidden>
 					Main Person
 				</option>
 				<option value="meaghan">Meaghan</option>
@@ -84,7 +88,7 @@ export default function FilterBar({ filterValues, setFilterValues }) {
 				<option value="nancy">Nancy</option>
 				<option value={null}>None</option>
 			</select>
-			<button onSubmit={handleSubmit}>Search</button>
+			<button onClick={onSubmit}>Search</button>
 		</form>
 	);
 }
