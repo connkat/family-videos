@@ -35,7 +35,7 @@ function App() {
 				filterValues={filterValues}
 				setFilterValues={setFilterValues}
 			/>
-			<VideoTable data={filteredData} />
+			<VideoTable rows={filteredData} />
 		</div>
 	);
 }
