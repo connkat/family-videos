@@ -8,8 +8,6 @@ import TableHead from "@mui/material/TableHead";
 import TableContainer from "@mui/material/TableContainer";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
-import TableSortLabel from "@mui/material/TableSortLabel";
-import { visuallyHidden } from "@mui/utils";
 
 import Modal from "./Modal";
 
@@ -61,8 +59,8 @@ export default function VideoTable({ data }) {
 									>
 										<td width="25%">{video.date}</td>
 										<td width="25%">{video.year}</td>
-										<td width="25%">{video.event ?? "n/a"}</td>
-										<td width="25%">{video.main_person ?? "n/a"}</td>
+										<td width="25%">{video.occasion ?? "n/a"}</td>
+										<td width="25%">{video.mainPerson ?? "n/a"}</td>
 									</TableRow>
 								);
 							})}

@@ -1,8 +1,7 @@
-// import { useState } from "react";
+import { useState } from "react";
 import Header from "./components/Header";
 import VideoTable from "./components/VideoTable";
 import FilterBar from "./components/FilterBar";
-import { useState } from "react";
 
 import data from "./data";
 
@@ -15,24 +14,39 @@ function App() {
 		mainPerson: "",
 	});
 
-	// function videoList() {
-	// 	let filtered = data;
+	// const [filteredData, setFilteredData] = useState([]);
 
-	// 	if (filterValues.year) {
-	// 		filtered = data.filter((row) => {
-	// 			return row.year.includes(filterValues.year);
-	// 		});
-	// 	}
+	function createList(data) {
+		let list = data;
+		let newList = [];
 
-	// if (filterValues.mainPerson) {
-	// 	filtered = data.filter((row) => {
-	// 		return row.mainPerson.includes(filterValues.mainPerson);
-	// 	});
-	// }
-	// 	return filtered;
-	// }
+		if (filterValues.year) {
+			const newYear = list.filter((row) => row.year === filterValues.year);
 
-	// console.log("data: ", filterValues);
+			newList.push(...newYear);
+		}
+		if (filterValues.occasion) {
+			let newOccasion = list.filter(
+				(row) => row.occasion === filterValues.occasion
+			);
+			newList.push(...newOccasion);
+		}
+		if (filterValues.mainPerson) {
+			console.log(filterValues.mainPerson);
+			let newMainPerson = list.filter(
+				(row) => row.mainPerson === filterValues.mainPerson
+			);
+			newList.push(...newMainPerson);
+		}
+
+		if (newList.length > 0) {
+			return [...new Set(newList)];
+		} else {
+			return list;
+		}
+	}
+
+	const filtered = createList(data);
 
 	return (
 		<div>
@@ -41,7 +55,7 @@ function App() {
 				filterValues={filterValues}
 				setFilterValues={setFilterValues}
 			/>
-			<VideoTable data={data} />
+			<VideoTable data={filtered} />
 		</div>
 	);
 }
