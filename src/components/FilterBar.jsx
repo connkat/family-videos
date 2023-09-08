@@ -51,6 +51,16 @@ export default function FilterBar({ filterValues, setFilterValues }) {
 		return filterValues;
 	}
 
+	function onReset() {
+		setFilterValues({
+			year: "",
+			occasion: "",
+			mainPerson: "",
+		});
+
+		return filterValues;
+	}
+
 	return (
 		<div className={classes.filterBar}>
 			<form>
@@ -113,6 +123,7 @@ export default function FilterBar({ filterValues, setFilterValues }) {
 						<option value={""}>None</option>
 					</select>
 					<button onClick={onSubmit}>Search</button>
+					<button onClick={onReset}>Reset</button>
 				</div>
 			</form>
 		</div>
