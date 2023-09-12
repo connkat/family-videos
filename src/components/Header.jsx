@@ -3,7 +3,7 @@ import "./header.css";
 function Header() {
 	return (
 		<div className="header">
-			<h1>Connolly Family Memories</h1>
+			<h1>The Connollys</h1>
 		</div>
 	);
 }
