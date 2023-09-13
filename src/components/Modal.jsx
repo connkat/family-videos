@@ -18,6 +18,7 @@ const style = {
 };
 
 export default function BasicModal(props) {
+	console.log(props.date);
 	return (
 		<div>
 			<Modal

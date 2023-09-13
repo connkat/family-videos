@@ -131,11 +131,11 @@ export default function EnhancedTable({ rows }) {
 	const handleOpen = () => setOpen(true);
 	const handleClose = () => setOpen(false);
 
-	const handleClick = (event, row, embedId) => {
+	const handleClick = (event, date, embedId) => {
 		event.preventDefault();
 		handleOpen();
 		setEmbedId(embedId);
-		setDate(row.date);
+		setDate(date);
 	};
 
 	const handleRequestSort = (event, property) => {
@@ -152,9 +152,6 @@ export default function EnhancedTable({ rows }) {
 		setRowsPerPage(parseInt(event.target.value, 10));
 		setPage(0);
 	};
-
-	const emptyRows =
-		page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0;
 
 	const visibleRows = useMemo(
 		() =>
@@ -209,12 +206,6 @@ export default function EnhancedTable({ rows }) {
 									</StyledTableRow>
 								);
 							})}
-
-							{emptyRows > 0 && (
-								<TableRow style={{ height: 53 * emptyRows }}>
-									<StyledTableCell colSpan={6} />
-								</TableRow>
-							)}
 							{rows.length === 0 ? (
 								<TableRow>
 									<TableCell colSpan="4" style={{ textAlign: "center" }}>
