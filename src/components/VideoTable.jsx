@@ -140,9 +140,11 @@ export default function VideoTable({ rows }) {
 									)}
 								</TableBody>
 								{rows.length === 0 && (
-									<TableRow style={{ textAlign: "center" }}>
-										<StyledTableCell>No Videos found</StyledTableCell>
-									</TableRow>
+									<TableBody>
+										<TableRow style={{ textAlign: "center" }}>
+											<StyledTableCell>No Videos found</StyledTableCell>
+										</TableRow>
+									</TableBody>
 								)}
 								<TableFooter>
 									<TableRow>

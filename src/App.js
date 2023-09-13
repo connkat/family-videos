@@ -59,16 +59,19 @@ function App() {
 					<VideoTable rows={filteredData} />
 				</>
 			) : (
-				<form>
-					<input
-						id="password"
-						name="password"
-						onChange={(e) => {
-							setGuess(e.target.value);
-						}}
-					/>
-					<button onClick={checkPassword}>open sesame</button>
-				</form>
+				<div className="password">
+					<form>
+						<input
+							type="password"
+							id="password"
+							name="password"
+							onChange={(e) => {
+								setGuess(e.target.value);
+							}}
+						/>
+						<button onClick={checkPassword}>open sesame</button>
+					</form>
+				</div>
 			)}
 		</div>
 	);
