@@ -1,5 +1,4 @@
 import { useState, useMemo } from "react";
-import { alpha } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
@@ -9,15 +8,11 @@ import TableHead from "@mui/material/TableHead";
 import TablePagination from "@mui/material/TablePagination";
 import TableRow from "@mui/material/TableRow";
 import TableSortLabel from "@mui/material/TableSortLabel";
-import Toolbar from "@mui/material/Toolbar";
-import Typography from "@mui/material/Typography";
 import Paper from "@mui/material/Paper";
-import IconButton from "@mui/material/IconButton";
-import Tooltip from "@mui/material/Tooltip";
 import { styled } from "@mui/material/styles";
-
-import FilterListIcon from "@mui/icons-material/FilterList";
 import { visuallyHidden } from "@mui/utils";
+
+import Modal from "./Modal";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
 	[`&.${tableCellClasses.head}`]: {
@@ -124,71 +119,29 @@ function EnhancedTableHead(props) {
 	);
 }
 
-function EnhancedTableToolbar(props) {
-	const { numSelected } = props;
-
-	return (
-		<Toolbar
-			sx={{
-				pl: { sm: 2 },
-				pr: { xs: 1, sm: 1 },
-				...(numSelected > 0 && {
-					bgcolor: (theme) =>
-						alpha(
-							theme.palette.primary.main,
-							theme.palette.action.activatedOpacity
-						),
-				}),
-			}}
-		>
-			<Typography
-				sx={{ flex: "1 1 100%" }}
-				variant="h6"
-				id="tableTitle"
-				component="div"
-			>
-				Video List
-			</Typography>
-			<Tooltip title="Filter list">
-				<IconButton>
-					<FilterListIcon />
-				</IconButton>
-			</Tooltip>
-		</Toolbar>
-	);
-}
-
 export default function EnhancedTable({ rows }) {
 	const [order, setOrder] = useState("asc");
 	const [orderBy, setOrderBy] = useState("calories");
-	const [selected, setSelected] = useState([]);
 	const [page, setPage] = useState(0);
 	const [rowsPerPage, setRowsPerPage] = useState(5);
+	const [embedId, setEmbedId] = useState("");
+	const [date, setDate] = useState("");
+	const [open, setOpen] = useState(false);
+
+	const handleOpen = () => setOpen(true);
+	const handleClose = () => setOpen(false);
+
+	const handleClick = (event, row, embedId) => {
+		event.preventDefault();
+		handleOpen();
+		setEmbedId(embedId);
+		setDate(row.date);
+	};
 
 	const handleRequestSort = (event, property) => {
 		const isAsc = orderBy === property && order === "asc";
 		setOrder(isAsc ? "desc" : "asc");
 		setOrderBy(property);
-	};
-
-	const handleClick = (event, name) => {
-		const selectedIndex = selected.indexOf(name);
-		let newSelected = [];
-
-		if (selectedIndex === -1) {
-			newSelected = newSelected.concat(selected, name);
-		} else if (selectedIndex === 0) {
-			newSelected = newSelected.concat(selected.slice(1));
-		} else if (selectedIndex === selected.length - 1) {
-			newSelected = newSelected.concat(selected.slice(0, -1));
-		} else if (selectedIndex > 0) {
-			newSelected = newSelected.concat(
-				selected.slice(0, selectedIndex),
-				selected.slice(selectedIndex + 1)
-			);
-		}
-
-		setSelected(newSelected);
 	};
 
 	const handleChangePage = (newPage) => {
@@ -199,8 +152,6 @@ export default function EnhancedTable({ rows }) {
 		setRowsPerPage(parseInt(event.target.value, 10));
 		setPage(0);
 	};
-
-	const isSelected = (name) => selected.indexOf(name) !== -1;
 
 	const visibleRows = useMemo(
 		() =>
@@ -213,8 +164,13 @@ export default function EnhancedTable({ rows }) {
 
 	return (
 		<Box sx={{ width: "100%" }}>
+			<Modal
+				open={open}
+				handleClose={handleClose}
+				date={date}
+				embedId={embedId}
+			/>
 			<Paper sx={{ width: "100%", mb: 2 }}>
-				<EnhancedTableToolbar numSelected={selected.length} />
 				<TableContainer>
 					<Table
 						sx={{ minWidth: 750 }}
@@ -222,7 +178,6 @@ export default function EnhancedTable({ rows }) {
 						size="medium"
 					>
 						<EnhancedTableHead
-							numSelected={selected.length}
 							order={order}
 							orderBy={orderBy}
 							onRequestSort={handleRequestSort}
@@ -230,17 +185,15 @@ export default function EnhancedTable({ rows }) {
 						/>
 						<TableBody>
 							{visibleRows.map((row, index) => {
-								const isItemSelected = isSelected(row.name);
-
 								return (
-									<TableRow
+									<StyledTableRow
 										hover
-										onClick={(event) => handleClick(event, row.name)}
-										aria-checked={isItemSelected}
-										tabIndex={-1}
-										key={row.id}
-										selected={isItemSelected}
 										sx={{ cursor: "pointer" }}
+										key={row.id}
+										tabIndex={-1}
+										onClick={(event) =>
+											handleClick(event, row.date, row.embedId)
+										}
 									>
 										<TableCell>{row.date}</TableCell>
 										<TableCell align="left">{row.year}</TableCell>
@@ -250,7 +203,7 @@ export default function EnhancedTable({ rows }) {
 										<TableCell align="left">
 											{row.mainPerson ? row.mainPerson : "n/a"}
 										</TableCell>
-									</TableRow>
+									</StyledTableRow>
 								);
 							})}
 							{rows.length === 0 ? (
