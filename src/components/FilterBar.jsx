@@ -1,6 +1,9 @@
 import { useState } from "react";
 
 import { makeStyles } from "@mui/styles";
+import DeleteIcon from "@mui/icons-material/Delete";
+import SearchIcon from "@mui/icons-material/Search";
+import Tooltip from "@mui/material/Tooltip";
 
 const useStyles = makeStyles((theme) => ({
 	filterBar: {
@@ -51,7 +54,7 @@ export default function FilterBar({ filterValues, setFilterValues }) {
 		return filterValues;
 	}
 
-	function onReset() {
+	function deleteFilter() {
 		setFilterValues({
 			year: "",
 			occasion: "",
@@ -60,7 +63,6 @@ export default function FilterBar({ filterValues, setFilterValues }) {
 
 		return filterValues;
 	}
-
 	return (
 		<div className={classes.filterBar}>
 			<form>
@@ -95,12 +97,11 @@ export default function FilterBar({ filterValues, setFilterValues }) {
 						<option value="Birthday">Birthday</option>
 						<option value="Christmas">Christmas</option>
 						<option value="March Break">March Break</option>
-						<option value="First">Crawling</option>
 						<option value="Halloween">Halloween</option>
 						<option value="baseball">Baseball</option>
 						<option value="Kindergarten Grad">Kindergarten Grad</option>
 						<option value="News">News</option>
-						<option value="First">First Steps</option>
+						<option value="First Steps">First Steps</option>
 						<option value="MSM">MSM</option>
 						<option value="Cameron Lake">Cameron Lake</option>
 						<option value={""}>None</option>
@@ -122,8 +123,16 @@ export default function FilterBar({ filterValues, setFilterValues }) {
 						<option value="Nancy">Nancy</option>
 						<option value={""}>None</option>
 					</select>
-					<button onClick={onSubmit}>Search</button>
-					<button onClick={onReset}>Reset</button>
+					<Tooltip title="Filter Results">
+						<button onClick={onSubmit}>
+							<SearchIcon />
+						</button>
+					</Tooltip>
+					<Tooltip title="Clear Filter">
+						<button onClick={deleteFilter}>
+							<DeleteIcon />
+						</button>
+					</Tooltip>
 				</div>
 			</form>
 		</div>

@@ -1,25 +1,23 @@
-import React, { useState } from "react";
-import PropTypes from "prop-types";
-
+import { useState, useMemo } from "react";
+import { alpha } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell, { tableCellClasses } from "@mui/material/TableCell";
-import TableHead from "@mui/material/TableHead";
 import TableContainer from "@mui/material/TableContainer";
-import TableRow from "@mui/material/TableRow";
-import TableFooter from "@mui/material/TableFooter";
+import TableHead from "@mui/material/TableHead";
 import TablePagination from "@mui/material/TablePagination";
+import TableRow from "@mui/material/TableRow";
+import TableSortLabel from "@mui/material/TableSortLabel";
+import Toolbar from "@mui/material/Toolbar";
+import Typography from "@mui/material/Typography";
 import Paper from "@mui/material/Paper";
-import { styled, useTheme } from "@mui/material/styles";
-import { makeStyles } from "@mui/styles";
 import IconButton from "@mui/material/IconButton";
-import FirstPageIcon from "@mui/icons-material/FirstPage";
-import KeyboardArrowLeft from "@mui/icons-material/KeyboardArrowLeft";
-import KeyboardArrowRight from "@mui/icons-material/KeyboardArrowRight";
-import LastPageIcon from "@mui/icons-material/LastPage";
+import Tooltip from "@mui/material/Tooltip";
+import { styled } from "@mui/material/styles";
 
-import Modal from "./Modal";
+import FilterListIcon from "@mui/icons-material/FilterList";
+import { visuallyHidden } from "@mui/utils";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
 	[`&.${tableCellClasses.head}`]: {
@@ -36,46 +34,164 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 	"&:nth-of-type(odd)": {
 		backgroundColor: theme.palette.action.hover,
 	},
-	// hide last border
 	"&:last-child td, &:last-child th": {
 		border: 0,
 	},
 }));
 
-const useStyles = makeStyles((theme) => ({
-	container: {
-		margin: "auto",
-		width: "70%",
+function descendingComparator(a, b, orderBy) {
+	if (b[orderBy] < a[orderBy]) {
+		return -1;
+	}
+	if (b[orderBy] > a[orderBy]) {
+		return 1;
+	}
+	return 0;
+}
+
+function getComparator(order, orderBy) {
+	return order === "desc"
+		? (a, b) => descendingComparator(a, b, orderBy)
+		: (a, b) => -descendingComparator(a, b, orderBy);
+}
+function stableSort(array, comparator) {
+	const stabilizedThis = array.map((el, index) => [el, index]);
+	stabilizedThis.sort((a, b) => {
+		const order = comparator(a[0], b[0]);
+		if (order !== 0) {
+			return order;
+		}
+		return a[1] - b[1];
+	});
+	return stabilizedThis.map((el) => el[0]);
+}
+
+const headCells = [
+	{
+		id: "date",
+		numeric: false,
+		label: "Date",
 	},
-	header: {
-		fontSize: "3",
-		backgroundColor: "red",
+	{
+		id: "year",
+		numeric: true,
+		label: "Year",
 	},
-}));
-export default function VideoTable({ rows }) {
-	const classes = useStyles();
+	{
+		id: "occasion",
+		numeric: false,
+		label: "Occasion",
+	},
+	{
+		id: "mainPerson",
+		numeric: false,
+		label: "Main Person",
+	},
+];
 
-	const [embedId, setEmbedId] = useState("");
-	const [date, setDate] = useState("");
-	const [open, setOpen] = useState(false);
-
-	const handleOpen = () => setOpen(true);
-	const handleClose = () => setOpen(false);
-
-	const handleClick = (event, date, embedId) => {
-		event.preventDefault();
-		handleOpen();
-		setEmbedId(embedId);
-		setDate(date);
+function EnhancedTableHead(props) {
+	const { order, orderBy, onRequestSort } = props;
+	const createSortHandler = (property) => (event) => {
+		onRequestSort(event, property);
 	};
 
-	const [page, setPage] = React.useState(0);
-	const [rowsPerPage, setRowsPerPage] = React.useState(5);
+	return (
+		<TableHead>
+			<StyledTableRow>
+				{headCells.map((headCell) => (
+					<StyledTableCell
+						key={headCell.id}
+						align="left"
+						padding={headCell.disablePadding ? "none" : "normal"}
+						sortDirection={orderBy === headCell.id ? order : false}
+					>
+						<TableSortLabel
+							active={orderBy === headCell.id}
+							direction={orderBy === headCell.id ? order : "asc"}
+							onClick={createSortHandler(headCell.id)}
+						>
+							{headCell.label}
+							{orderBy === headCell.id ? (
+								<Box component="span" sx={visuallyHidden}>
+									{order === "desc" ? "sorted descending" : "sorted ascending"}
+								</Box>
+							) : null}
+						</TableSortLabel>
+					</StyledTableCell>
+				))}
+			</StyledTableRow>
+		</TableHead>
+	);
+}
 
-	const emptyRows =
-		page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0;
+function EnhancedTableToolbar(props) {
+	const { numSelected } = props;
 
-	const handleChangePage = (event, newPage) => {
+	return (
+		<Toolbar
+			sx={{
+				pl: { sm: 2 },
+				pr: { xs: 1, sm: 1 },
+				...(numSelected > 0 && {
+					bgcolor: (theme) =>
+						alpha(
+							theme.palette.primary.main,
+							theme.palette.action.activatedOpacity
+						),
+				}),
+			}}
+		>
+			<Typography
+				sx={{ flex: "1 1 100%" }}
+				variant="h6"
+				id="tableTitle"
+				component="div"
+			>
+				Video List
+			</Typography>
+			<Tooltip title="Filter list">
+				<IconButton>
+					<FilterListIcon />
+				</IconButton>
+			</Tooltip>
+		</Toolbar>
+	);
+}
+
+export default function EnhancedTable({ rows }) {
+	const [order, setOrder] = useState("asc");
+	const [orderBy, setOrderBy] = useState("calories");
+	const [selected, setSelected] = useState([]);
+	const [page, setPage] = useState(0);
+	const [rowsPerPage, setRowsPerPage] = useState(5);
+
+	const handleRequestSort = (event, property) => {
+		const isAsc = orderBy === property && order === "asc";
+		setOrder(isAsc ? "desc" : "asc");
+		setOrderBy(property);
+	};
+
+	const handleClick = (event, name) => {
+		const selectedIndex = selected.indexOf(name);
+		let newSelected = [];
+
+		if (selectedIndex === -1) {
+			newSelected = newSelected.concat(selected, name);
+		} else if (selectedIndex === 0) {
+			newSelected = newSelected.concat(selected.slice(1));
+		} else if (selectedIndex === selected.length - 1) {
+			newSelected = newSelected.concat(selected.slice(0, -1));
+		} else if (selectedIndex > 0) {
+			newSelected = newSelected.concat(
+				selected.slice(0, selectedIndex),
+				selected.slice(selectedIndex + 1)
+			);
+		}
+
+		setSelected(newSelected);
+	};
+
+	const handleChangePage = (newPage) => {
 		setPage(newPage);
 	};
 
@@ -83,168 +199,80 @@ export default function VideoTable({ rows }) {
 		setRowsPerPage(parseInt(event.target.value, 10));
 		setPage(0);
 	};
-	return (
-		<>
-			<Box sx={{ width: "100%" }}>
-				<Modal
-					open={open}
-					handleClose={handleClose}
-					date={date}
-					embedId={embedId}
-				/>
-				<div className={classes.container}>
-					<Paper elevation={3} square={false} sx={{ mb: 2 }}>
-						<TableContainer>
-							<Table
-								sx={{ minWidth: 750 }}
-								aria-labelledby="tableTitle"
-								size={"medium"}
-							>
-								<TableHead>
-									<StyledTableRow>
-										<StyledTableCell>Year</StyledTableCell>
-										<StyledTableCell>Event</StyledTableCell>
-										<StyledTableCell>Main Person</StyledTableCell>
-									</StyledTableRow>
-								</TableHead>
 
-								<TableBody>
-									{(rowsPerPage > 0
-										? rows.slice(
-												page * rowsPerPage,
-												page * rowsPerPage + rowsPerPage
-										  )
-										: rows
-									).map((row) => (
-										<StyledTableRow
-											key={row.id}
-											onClick={(event) =>
-												handleClick(event, row.date, row.embedId)
-											}
-										>
-											<StyledTableCell style={{ width: 30 }} align="left">
-												{row.year}
-											</StyledTableCell>
-											<StyledTableCell style={{ width: 30 }} align="left">
-												{row.occasion}
-											</StyledTableCell>
-											<StyledTableCell style={{ width: 30 }} align="left">
-												{row.mainPerson}
-											</StyledTableCell>
-										</StyledTableRow>
-									))}
-									{emptyRows > 0 && (
-										<TableRow style={{ height: 53 * emptyRows }}>
-											<StyledTableCell colSpan={6} />
-										</TableRow>
-									)}
-								</TableBody>
-								{rows.length === 0 && (
-									<TableBody>
-										<TableRow style={{ textAlign: "center" }}>
-											<StyledTableCell>No Videos found</StyledTableCell>
-										</TableRow>
-									</TableBody>
-								)}
-								<TableFooter>
-									<TableRow>
-										<TablePagination
-											rowsPerPageOptions={[
-												5,
-												10,
-												25,
-												{ label: "All", value: -1 },
-											]}
-											colSpan={3}
-											count={rows.length}
-											rowsPerPage={rowsPerPage}
-											page={page}
-											SelectProps={{
-												inputProps: {
-													"aria-label": "rows per page",
-												},
-												native: true,
-											}}
-											onPageChange={handleChangePage}
-											onRowsPerPageChange={handleChangeRowsPerPage}
-											ActionsComponent={TablePaginationActions}
-										/>
-									</TableRow>
-								</TableFooter>
-							</Table>
-						</TableContainer>
-					</Paper>
-				</div>
-			</Box>
-		</>
+	const isSelected = (name) => selected.indexOf(name) !== -1;
+
+	const visibleRows = useMemo(
+		() =>
+			stableSort(rows, getComparator(order, orderBy)).slice(
+				page * rowsPerPage,
+				page * rowsPerPage + rowsPerPage
+			),
+		[order, orderBy, page, rowsPerPage, rows]
 	);
-}
-
-function TablePaginationActions(props) {
-	const theme = useTheme();
-	const { count, page, rowsPerPage, onPageChange } = props;
-
-	const handleFirstPageButtonClick = (event) => {
-		onPageChange(event, 0);
-	};
-
-	const handleBackButtonClick = (event) => {
-		onPageChange(event, page - 1);
-	};
-
-	const handleNextButtonClick = (event) => {
-		onPageChange(event, page + 1);
-	};
-
-	const handleLastPageButtonClick = (event) => {
-		onPageChange(event, Math.max(0, Math.ceil(count / rowsPerPage) - 1));
-	};
 
 	return (
-		<Box sx={{ flexShrink: 0, ml: 2.5 }}>
-			<IconButton
-				onClick={handleFirstPageButtonClick}
-				disabled={page === 0}
-				aria-label="first page"
-			>
-				{theme.direction === "rtl" ? <LastPageIcon /> : <FirstPageIcon />}
-			</IconButton>
-			<IconButton
-				onClick={handleBackButtonClick}
-				disabled={page === 0}
-				aria-label="previous page"
-			>
-				{theme.direction === "rtl" ? (
-					<KeyboardArrowRight />
-				) : (
-					<KeyboardArrowLeft />
-				)}
-			</IconButton>
-			<IconButton
-				onClick={handleNextButtonClick}
-				disabled={page >= Math.ceil(count / rowsPerPage) - 1}
-				aria-label="next page"
-			>
-				{theme.direction === "rtl" ? (
-					<KeyboardArrowLeft />
-				) : (
-					<KeyboardArrowRight />
-				)}
-			</IconButton>
-			<IconButton
-				onClick={handleLastPageButtonClick}
-				disabled={page >= Math.ceil(count / rowsPerPage) - 1}
-				aria-label="last page"
-			>
-				{theme.direction === "rtl" ? <FirstPageIcon /> : <LastPageIcon />}
-			</IconButton>
+		<Box sx={{ width: "100%" }}>
+			<Paper sx={{ width: "100%", mb: 2 }}>
+				<EnhancedTableToolbar numSelected={selected.length} />
+				<TableContainer>
+					<Table
+						sx={{ minWidth: 750 }}
+						aria-labelledby="tableTitle"
+						size="medium"
+					>
+						<EnhancedTableHead
+							numSelected={selected.length}
+							order={order}
+							orderBy={orderBy}
+							onRequestSort={handleRequestSort}
+							rowCount={rows.length}
+						/>
+						<TableBody>
+							{visibleRows.map((row, index) => {
+								const isItemSelected = isSelected(row.name);
+
+								return (
+									<TableRow
+										hover
+										onClick={(event) => handleClick(event, row.name)}
+										aria-checked={isItemSelected}
+										tabIndex={-1}
+										key={row.id}
+										selected={isItemSelected}
+										sx={{ cursor: "pointer" }}
+									>
+										<TableCell>{row.date}</TableCell>
+										<TableCell align="left">{row.year}</TableCell>
+										<TableCell align="left">
+											{row.occasion ? row.occasion : "n/a"}
+										</TableCell>
+										<TableCell align="left">
+											{row.mainPerson ? row.mainPerson : "n/a"}
+										</TableCell>
+									</TableRow>
+								);
+							})}
+							{rows.length === 0 ? (
+								<TableRow>
+									<TableCell colSpan="4" style={{ textAlign: "center" }}>
+										No Videos found
+									</TableCell>
+								</TableRow>
+							) : null}
+						</TableBody>
+					</Table>
+				</TableContainer>
+				<TablePagination
+					rowsPerPageOptions={[5, 10, 25]}
+					component="div"
+					count={rows.length}
+					rowsPerPage={rowsPerPage}
+					page={page}
+					onPageChange={handleChangePage}
+					onRowsPerPageChange={handleChangeRowsPerPage}
+				/>
+			</Paper>
 		</Box>
 	);
 }
-
-TablePaginationActions.propTypes = {
-	count: PropTypes.number.isRequired,
-	onPageChange: PropTypes.func.isRequired,
-	page: PropTypes.number.isRequired,
-	rowsPerPage: PropTypes.number.isRequired,
-};

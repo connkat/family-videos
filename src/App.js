@@ -12,19 +12,6 @@ import "./App.css";
 function App() {
 	const [guess, setGuess] = useState("");
 	const [isVerified, setIsVerified] = useState(false);
-
-	function checkPassword(loggedIn) {
-		if (guess === process.env.REACT_APP_SITE_PASSWORD) {
-			setIsVerified(true);
-
-			Cookies.set("session", true, {
-				expires: 1,
-			});
-		} else {
-			alert("Sorry, that's not it");
-		}
-	}
-
 	const [filterValues, setFilterValues] = useState({
 		year: "",
 		occasion: "",
@@ -46,6 +33,18 @@ function App() {
 	}, [filterValues]);
 
 	const session = Cookies.get("session");
+
+	function checkPassword(loggedIn) {
+		if (guess === process.env.REACT_APP_SITE_PASSWORD) {
+			setIsVerified(true);
+
+			Cookies.set("session", true, {
+				expires: 1,
+			});
+		} else {
+			alert("Sorry, that's not it");
+		}
+	}
 
 	return (
 		<div>
