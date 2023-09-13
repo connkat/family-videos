@@ -144,7 +144,7 @@ export default function EnhancedTable({ rows }) {
 		setOrderBy(property);
 	};
 
-	const handleChangePage = (newPage) => {
+	const handleChangePage = (event, newPage) => {
 		setPage(newPage);
 	};
 
@@ -152,6 +152,9 @@ export default function EnhancedTable({ rows }) {
 		setRowsPerPage(parseInt(event.target.value, 10));
 		setPage(0);
 	};
+
+	const emptyRows =
+		page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0;
 
 	const visibleRows = useMemo(
 		() =>
@@ -206,6 +209,12 @@ export default function EnhancedTable({ rows }) {
 									</StyledTableRow>
 								);
 							})}
+
+							{emptyRows > 0 && (
+								<TableRow style={{ height: 53 * emptyRows }}>
+									<StyledTableCell colSpan={6} />
+								</TableRow>
+							)}
 							{rows.length === 0 ? (
 								<TableRow>
 									<TableCell colSpan="4" style={{ textAlign: "center" }}>
