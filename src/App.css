@@ -1,3 +1,10 @@
-.App {
- 
+.password-protector {
+	display: flex;
+	justify-content: center;
+	margin-top: 30vh;
+	align-items: center;
+}
+
+.password-form {
+	align-self: center;
 }

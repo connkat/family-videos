@@ -48,9 +48,9 @@ function App() {
 
 	return (
 		<div>
+			<Header isVerified={isVerified} session={session} />
 			{isVerified || session ? (
 				<>
-					<Header />
 					<FilterBar
 						filterValues={filterValues}
 						setFilterValues={setFilterValues}
@@ -58,7 +58,7 @@ function App() {
 					<VideoTable rows={filteredData} />
 				</>
 			) : (
-				<div className="password">
+				<div className="password-protector">
 					<form>
 						<input
 							type="password"
