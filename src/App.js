@@ -60,6 +60,7 @@ function App() {
 			) : (
 				<div className="password-protector">
 					<form>
+						<p>What's the secret family password?</p>
 						<input
 							type="password"
 							id="password"
@@ -68,7 +69,7 @@ function App() {
 								setGuess(e.target.value);
 							}}
 						/>
-						<button onClick={checkPassword}>open sesame</button>
+						<button onClick={checkPassword}>submit</button>
 					</form>
 				</div>
 			)}
