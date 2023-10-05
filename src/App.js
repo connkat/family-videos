@@ -60,7 +60,7 @@ function App() {
 			) : (
 				<div className="password-protector">
 					<form>
-						<p>What's the secret family password?</p>
+						<p>What's the secret password?</p>
 						<input
 							type="password"
 							id="password"
