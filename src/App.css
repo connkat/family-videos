@@ -8,3 +8,8 @@
 .password-form {
 	align-self: center;
 }
+
+/* ////   Mobile   //// */
+
+@media only screen and (max-width: 600px) {
+}
