@@ -1,31 +1,12 @@
 import { useState } from "react";
 
-import { makeStyles } from "@mui/styles";
 import DeleteIcon from "@mui/icons-material/Delete";
 import SearchIcon from "@mui/icons-material/Search";
 import Tooltip from "@mui/material/Tooltip";
 
-const useStyles = makeStyles((theme) => ({
-	filterBar: {
-		fontFamily: "sans-serif",
-		alignItems: "center",
-		width: "50%",
-		marginBlockEnd: "3vh",
-		margin: "auto",
-	},
-	filterSelection: {
-		width: "auto",
-		display: "flex",
-		justifyContent: "space-between",
-		padding: "1vh",
-		border: "3px solid black",
-		alignSelf: "center",
-	},
-}));
+import "./filterbar.css";
 
 export default function FilterBar({ filterValues, setFilterValues }) {
-	const classes = useStyles();
-
 	const [year, setYear] = useState("");
 	const [mainPerson, setMainPerson] = useState("");
 	const [occasion, setOccasion] = useState("");
@@ -64,9 +45,9 @@ export default function FilterBar({ filterValues, setFilterValues }) {
 		return filterValues;
 	}
 	return (
-		<div className={classes.filterBar}>
+		<div className="filterBar">
 			<form>
-				<div className={classes.filterSelection}>
+				<div className="filterSelection">
 					<select name="year" id="year" value={year} onChange={handleChange}>
 						<option value="" defaultValue disabled hidden>
 							Year

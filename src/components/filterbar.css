@@ -1,0 +1,26 @@
+.filterBar {
+	font-family: sans-serif;
+	align-items: center;
+	width: 50%;
+	margin-block-end: 3vh;
+	margin: auto;
+}
+
+.filterSelection {
+	width: auto;
+	display: flex;
+	justify-content: space-between;
+	padding: 1vh;
+	border: 3px solid black;
+	align-self: center;
+}
+
+@media only screen and (max-width: 600px) {
+	.filterBar {
+		width: 100%;
+		font-size: 2vh;;
+	}
+	.filterSelection {
+		border: 0px solid white;
+	}
+}

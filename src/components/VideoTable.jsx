@@ -171,7 +171,7 @@ export default function EnhancedTable({ rows }) {
 				embedId={embedId}
 			/>
 			<Paper sx={{ width: "100%", mb: 2 }}>
-				<TableContainer>
+				<TableContainer className="table">
 					<Table
 						sx={{ minWidth: 750 }}
 						aria-labelledby="tableTitle"
