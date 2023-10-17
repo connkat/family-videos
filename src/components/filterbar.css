@@ -18,9 +18,11 @@
 @media only screen and (max-width: 600px) {
 	.filterBar {
 		width: 100%;
-		font-size: 2vh;;
+		font-size: 2vh;
 	}
 	.filterSelection {
 		border: 0px solid white;
+		display: flex;
+		flex-direction: column;
 	}
 }
