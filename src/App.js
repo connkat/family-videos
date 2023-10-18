@@ -66,7 +66,7 @@ function App() {
 							id="password"
 							name="password"
 							onChange={(e) => {
-								setGuess(e.target.value);
+								setGuess(e.target.value.toLowerCase());
 							}}
 						/>
 						<button onClick={checkPassword}>submit</button>
