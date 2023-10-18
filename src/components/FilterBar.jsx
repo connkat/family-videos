@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 import DeleteIcon from "@mui/icons-material/Delete";
 import SearchIcon from "@mui/icons-material/Search";
@@ -10,7 +10,7 @@ export default function FilterBar({ filterValues, setFilterValues }) {
 	const [year, setYear] = useState("");
 	const [mainPerson, setMainPerson] = useState("");
 	const [occasion, setOccasion] = useState("");
-	const [filterOpen, setFilterOpen] = useState(false);
+	// const [filterOpen, setFilterOpen] = useState(false);
 
 	function handleChange(event) {
 		let { name, value } = event.target;
@@ -46,27 +46,27 @@ export default function FilterBar({ filterValues, setFilterValues }) {
 		return filterValues;
 	}
 
-	function showMobileFilterBar(filterOpen) {
-		filterOpen ? setFilterOpen(false) : setFilterOpen(true);
+	// function showMobileFilterBar(filterOpen) {
+	// 	filterOpen ? setFilterOpen(false) : setFilterOpen(true);
 
-		return filterOpen;
-	}
+	// 	return filterOpen;
+	// }
 
-	useEffect(() => {
-		const setResponsiveness = () => {
-			return window.innerWidth < 600
-				? setFilterOpen((prevState) => ({ ...prevState, mobileView: true }))
-				: setFilterOpen((prevState) => ({ ...prevState, mobileView: false }));
-		};
+	// useEffect(() => {
+	// 	const setResponsiveness = () => {
+	// 		return window.innerWidth < 600
+	// 			? setFilterOpen((prevState) => ({ ...prevState, mobileView: true }))
+	// 			: setFilterOpen((prevState) => ({ ...prevState, mobileView: false }));
+	// 	};
 
-		setResponsiveness();
+	// 	setResponsiveness();
 
-		window.addEventListener("resize", () => setResponsiveness());
+	// 	window.addEventListener("resize", () => setResponsiveness());
 
-		return () => {
-			window.removeEventListener("resize", () => setResponsiveness());
-		};
-	}, []);
+	// 	return () => {
+	// 		window.removeEventListener("resize", () => setResponsiveness());
+	// 	};
+	// }, []);
 
 	return (
 		<form>
