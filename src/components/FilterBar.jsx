@@ -1,17 +1,38 @@
 import { useState } from "react";
-
+import { useMediaQuery } from "react-responsive";
 import DeleteIcon from "@mui/icons-material/Delete";
 import SearchIcon from "@mui/icons-material/Search";
 import Tooltip from "@mui/material/Tooltip";
 
+import MobileDrawer from "./MobileDrawer";
 import "./filterbar.css";
 
 export default function FilterBar({ filterValues, setFilterValues }) {
+	const isTabletOrMobile = useMediaQuery({ query: "(max-width: 1224px)" });
+
+	return (
+		<form>
+			{isTabletOrMobile ? (
+				<div className="mobileView">
+					<MobileDrawer
+						filterValues={filterValues}
+						setFilterValues={setFilterValues}
+					/>
+				</div>
+			) : (
+				<FilterMenu
+					filterValues={filterValues}
+					setFilterValues={setFilterValues}
+				/>
+			)}
+		</form>
+	);
+}
+
+function FilterMenu({ filterValues, setFilterValues }) {
 	const [year, setYear] = useState("");
 	const [mainPerson, setMainPerson] = useState("");
 	const [occasion, setOccasion] = useState("");
-	// const [filterOpen, setFilterOpen] = useState(false);
-
 	function handleChange(event) {
 		let { name, value } = event.target;
 		if (name === "year") {
@@ -45,28 +66,6 @@ export default function FilterBar({ filterValues, setFilterValues }) {
 
 		return filterValues;
 	}
-
-	// function showMobileFilterBar(filterOpen) {
-	// 	filterOpen ? setFilterOpen(false) : setFilterOpen(true);
-
-	// 	return filterOpen;
-	// }
-
-	// useEffect(() => {
-	// 	const setResponsiveness = () => {
-	// 		return window.innerWidth < 600
-	// 			? setFilterOpen((prevState) => ({ ...prevState, mobileView: true }))
-	// 			: setFilterOpen((prevState) => ({ ...prevState, mobileView: false }));
-	// 	};
-
-	// 	setResponsiveness();
-
-	// 	window.addEventListener("resize", () => setResponsiveness());
-
-	// 	return () => {
-	// 		window.removeEventListener("resize", () => setResponsiveness());
-	// 	};
-	// }, []);
 
 	return (
 		<form>
@@ -143,3 +142,5 @@ export default function FilterBar({ filterValues, setFilterValues }) {
 		</form>
 	);
 }
+
+export { FilterBar, FilterMenu };

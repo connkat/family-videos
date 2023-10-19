@@ -3,7 +3,7 @@ import Cookies from "js-cookie";
 
 import Header from "./components/Header";
 import VideoTable from "./components/VideoTable";
-import FilterBar from "./components/FilterBar";
+import { FilterBar } from "./components/FilterBar";
 
 import data from "./data";
 
