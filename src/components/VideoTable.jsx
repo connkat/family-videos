@@ -84,7 +84,7 @@ const headCells = [
 	},
 ];
 
-function EnhancedTableHead(props) {
+function VideoTableHead(props) {
 	const { order, orderBy, onRequestSort } = props;
 	const createSortHandler = (property) => (event) => {
 		onRequestSort(event, property);
@@ -119,7 +119,7 @@ function EnhancedTableHead(props) {
 	);
 }
 
-export default function EnhancedTable({ rows }) {
+export default function VideoTable({ rows }) {
 	const [order, setOrder] = useState("asc");
 	const [orderBy, setOrderBy] = useState("calories");
 	const [page, setPage] = useState(0);
@@ -138,13 +138,13 @@ export default function EnhancedTable({ rows }) {
 		setDate(date);
 	};
 
-	const handleRequestSort = (event, property) => {
+	const handleRequestSort = (property) => {
 		const isAsc = orderBy === property && order === "asc";
 		setOrder(isAsc ? "desc" : "asc");
 		setOrderBy(property);
 	};
 
-	const handleChangePage = (event, newPage) => {
+	const handleChangePage = (newPage) => {
 		setPage(newPage);
 	};
 
@@ -177,7 +177,7 @@ export default function EnhancedTable({ rows }) {
 						aria-labelledby="tableTitle"
 						size="medium"
 					>
-						<EnhancedTableHead
+						<VideoTableHead
 							order={order}
 							orderBy={orderBy}
 							onRequestSort={handleRequestSort}
@@ -191,6 +191,7 @@ export default function EnhancedTable({ rows }) {
 										sx={{ cursor: "pointer" }}
 										key={row.id}
 										tabIndex={-1}
+										index={index}
 										onClick={(event) =>
 											handleClick(event, row.date, row.embedId)
 										}

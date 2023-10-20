@@ -34,7 +34,8 @@ function App() {
 
 	const session = Cookies.get("session");
 
-	function checkPassword(loggedIn) {
+	function checkPassword(e) {
+		e.preventDefault();
 		if (guess === process.env.REACT_APP_SITE_PASSWORD) {
 			setIsVerified(true);
 
@@ -69,7 +70,7 @@ function App() {
 								setGuess(e.target.value.toLowerCase());
 							}}
 						/>
-						<button onClick={checkPassword}>submit</button>
+						<button onClick={(e) => checkPassword(e)}>submit</button>
 					</form>
 				</div>
 			)}

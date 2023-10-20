@@ -3,7 +3,9 @@ import "./header.css";
 function Header({ isVerified, session }) {
 	return (
 		<div className="header">
-			<h1>The Connollys</h1>
+			<a href="/">
+				<h1>The Connollys</h1>
+			</a>
 			{isVerified || session ? (
 				<p>Welcome fam!</p>
 			) : (
