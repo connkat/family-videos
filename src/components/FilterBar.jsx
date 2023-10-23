@@ -8,6 +8,7 @@ import MobileDrawer from "./MobileDrawer";
 import "./filterbar.css";
 
 export default function FilterBar({ filterValues, setFilterValues }) {
+	const [filterUpdated, setFilterUpdated] = useState(false);
 	const isTabletOrMobile = useMediaQuery({ query: "(max-width: 1224px)" });
 
 	return (
@@ -17,25 +18,24 @@ export default function FilterBar({ filterValues, setFilterValues }) {
 					<MobileDrawer
 						filterValues={filterValues}
 						setFilterValues={setFilterValues}
-						// filterUpdated={filterUpdated}
+						filterUpdated={filterUpdated}
 					/>
 				</div>
 			) : (
 				<FilterMenu
 					filterValues={filterValues}
 					setFilterValues={setFilterValues}
-					// setFilterUpdated={setFilterUpdated}
+					setFilterUpdated={setFilterUpdated}
 				/>
 			)}
 		</form>
 	);
 }
 
-function FilterMenu({ filterValues, setFilterValues }) {
+function FilterMenu({ filterValues, setFilterValues, setFilterUpdated }) {
 	const [year, setYear] = useState("");
 	const [mainPerson, setMainPerson] = useState("");
 	const [occasion, setOccasion] = useState("");
-	const [filterUpdated, setFilterUpdated] = useState(false);
 
 	function onSubmit(event) {
 		event.preventDefault();

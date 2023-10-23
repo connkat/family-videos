@@ -121,7 +121,7 @@ function VideoTableHead(props) {
 
 export default function VideoTable({ rows }) {
 	const [order, setOrder] = useState("asc");
-	const [orderBy, setOrderBy] = useState("calories");
+	const [orderBy, setOrderBy] = useState("date");
 	const [page, setPage] = useState(0);
 	const [rowsPerPage, setRowsPerPage] = useState(5);
 	const [embedId, setEmbedId] = useState("");
@@ -138,13 +138,13 @@ export default function VideoTable({ rows }) {
 		setDate(date);
 	};
 
-	const handleRequestSort = (property) => {
+	const handleRequestSort = (event, property) => {
 		const isAsc = orderBy === property && order === "asc";
 		setOrder(isAsc ? "desc" : "asc");
 		setOrderBy(property);
 	};
 
-	const handleChangePage = (newPage) => {
+	const handleChangePage = (event, newPage) => {
 		setPage(newPage);
 	};
 
