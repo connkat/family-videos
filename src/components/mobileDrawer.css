@@ -1,0 +1,6 @@
+.title {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	margin: 2vh 2vh 0 2vh ;
+}

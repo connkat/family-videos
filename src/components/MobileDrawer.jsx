@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { Global } from "@emotion/react";
 import { styled } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
@@ -9,22 +8,19 @@ import SwipeableDrawer from "@mui/material/SwipeableDrawer";
 
 import { FilterMenu } from "./FilterBar";
 
+import "./mobileDrawer.css";
+
 const Root = styled("div")(({ theme }) => ({
 	height: "100%",
 	backgroundColor: grey[100],
 }));
 
-function SwipeableEdgeDrawer({ filterValues, setFilterValues, filterUpdated }) {
-	const [open, setOpen] = useState(false);
-
-	const toggleDrawer = (newOpen) => () => {
-		setOpen(newOpen);
-
-		if (filterUpdated) {
-			setOpen(false);
-		}
-	};
-
+function SwipeableEdgeDrawer({
+	filterValues,
+	setFilterValues,
+	toggleDrawer,
+	open,
+}) {
 	return (
 		<Root>
 			<CssBaseline />
@@ -49,6 +45,10 @@ function SwipeableEdgeDrawer({ filterValues, setFilterValues, filterUpdated }) {
 					keepMounted: true,
 				}}
 			>
+				<div className="title">
+					<h3>Filters</h3>
+					<Button onClick={toggleDrawer(false)}>Close</Button>
+				</div>
 				<FilterMenu
 					filterValues={filterValues}
 					setFilterValues={setFilterValues}

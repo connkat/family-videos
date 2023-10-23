@@ -8,8 +8,12 @@ import MobileDrawer from "./MobileDrawer";
 import "./filterbar.css";
 
 export default function FilterBar({ filterValues, setFilterValues }) {
-	const [filterUpdated, setFilterUpdated] = useState(false);
 	const isTabletOrMobile = useMediaQuery({ query: "(max-width: 1224px)" });
+	const [open, setOpen] = useState(false);
+
+	const toggleDrawer = (newOpen) => () => {
+		setOpen(newOpen);
+	};
 
 	return (
 		<form>
@@ -18,21 +22,30 @@ export default function FilterBar({ filterValues, setFilterValues }) {
 					<MobileDrawer
 						filterValues={filterValues}
 						setFilterValues={setFilterValues}
-						filterUpdated={filterUpdated}
+						toggleDrawer={toggleDrawer}
+						open={open}
 					/>
 				</div>
 			) : (
 				<FilterMenu
 					filterValues={filterValues}
 					setFilterValues={setFilterValues}
-					setFilterUpdated={setFilterUpdated}
 				/>
 			)}
 		</form>
 	);
 }
 
-function FilterMenu({ filterValues, setFilterValues, setFilterUpdated }) {
+function FilterMenu({ filterValues, setFilterValues, toggleDrawer, open }) {
+	function deleteFilter() {
+		setFilterValues({
+			year: "",
+			occasion: "",
+			mainPerson: "",
+		});
+
+		return filterValues;
+	}
 	const [year, setYear] = useState("");
 	const [mainPerson, setMainPerson] = useState("");
 	const [occasion, setOccasion] = useState("");
@@ -45,7 +58,7 @@ function FilterMenu({ filterValues, setFilterValues, setFilterUpdated }) {
 			mainPerson: mainPerson,
 		});
 
-		setFilterUpdated(true);
+		toggleDrawer(false);
 
 		return filterValues;
 	}
@@ -61,16 +74,6 @@ function FilterMenu({ filterValues, setFilterValues, setFilterUpdated }) {
 		if (name === "occasion") {
 			setOccasion(value);
 		}
-	}
-
-	function deleteFilter() {
-		setFilterValues({
-			year: "",
-			occasion: "",
-			mainPerson: "",
-		});
-
-		return filterValues;
 	}
 
 	return (
